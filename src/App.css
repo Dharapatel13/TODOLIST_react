@@ -1,0 +1,16 @@
+.item{
+ background-color:  #00000013;
+ font-size: 1.5em;
+ box-shadow: 10px 10px grey;
+}
+.todoItems{
+  
+}
+.checkBtn{
+  font-weight: 900;
+  
+}
+.checkBtn:hover{
+  background-color: green;
+  color:white;
+}
