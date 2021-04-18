@@ -6,7 +6,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import {DeleteToList} from './servies/actions/action'
+ import { connect } from 'react-redux';
 
 
 function List(props) {
@@ -23,7 +26,8 @@ function List(props) {
         }
       
     }
-  
+ const  deleteList=(e,index)=>{ 
+    props.deleteList(index);}
    
    
   return (
@@ -45,7 +49,9 @@ function List(props) {
           </Button>
      </div>
      <div className="col-auto">
-     <Button  onClick={(e)=>{props.onSelect(props.id);}}>
+     <Button  onClick={() =>{ alert(props.id);
+       props.dispatch(DeleteToList(props.id))}
+      }>
         <DeleteIcon className="text-danger"/>
           </Button>
      </div>
@@ -60,4 +66,10 @@ function List(props) {
   );
 }
 
-export default List;
+const mapStateToProps=state=>({
+  todolist:state.todos.data
+})
+
+
+
+export default connect(mapStateToProps) (List);
