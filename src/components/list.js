@@ -13,28 +13,23 @@ import {checkTOList, DeleteToList} from '../servies/actions/action'
 
 
 function List(props) {
-    const [line,setLine]=useState(false);
-    const checkBtn=(id)=>{
-      props.dispatch(checkTOList({ id, completed: !completed }));
-      
-    }
-   
-   
+    
   return (
    <>
 
-   <li className=" pl-3 p-2 m-3  item" style={{textDecoration:line ?"line-through" : "none", backgroundColor:  '#00000013',
+   <li className=" pl-3 p-2 m-3  item" style={{ textDecoration: props.cmpt ? "line-through" : "none", backgroundColor:  '#00000013',
  fontSize: '1.5em',
  boxShadow: '10px 10px grey'}}>
  
  <div className="row justify-content-center p-0  "> 
-     <div className="col pl-xs-3 p-0">
+     <div className="col pl-xs-3 ">
       
        <span > {props.text} </span>
     
      </div>
      <div className="col-auto p-0">
-     <Button onClick={()=>checkBtn(props.id)}  >
+     <Button onClick={(e)=>{console.log(props.cmpt)
+       props.dispatch(checkTOList(props.id))} }  >
         <CheckIcon className="text-success"/>
           </Button>
      </div>

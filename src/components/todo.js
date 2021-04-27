@@ -102,6 +102,7 @@ console.log(props.todos);
                   text={todo.data}  
                   key={index} 
                   id={todo.id} 
+                  cmpt={todo.completed}
                   />
                   ))} 
             </ul>

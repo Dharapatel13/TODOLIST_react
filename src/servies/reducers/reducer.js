@@ -13,7 +13,8 @@ export default function TodoItem(state=initialState,action){
             console.log(state)
             return{data:[...state.data,{
                     data: action.data,
-                    id: action.id
+                    id: action.id,
+                    completed:false
                   }
                 ]
               
@@ -27,9 +28,11 @@ export default function TodoItem(state=initialState,action){
               data: todos,
             }
             case CHECK_TO_LIST:
-             var  index = state.findIndex((todo) => todo.id === action.id);
-             return  state[index].completed = action.completed;
-		
+              let  index = state.data.findIndex((todo) => todo.id === action.id);
+              state.data[index].completed = !state.data[index].completed;
+              return {
+                data: [...state.data]
+              }
 
             
       case Reset_Todo:
