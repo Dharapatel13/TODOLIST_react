@@ -44,6 +44,6 @@ export default function TodoItem(state=initialState,action){
     
         default:
             return state
-            break;
+           
     }
 }

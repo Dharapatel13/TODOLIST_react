@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import TODO from '../components/todo';
-import {AddToList,DeleteToList} from '../servies/actions/action'
-import TodoItem from '../servies/reducers/reducer';
+import {AddToList} from '../servies/actions/action'
+
 
 
 const mapStateToProps=state=>({
