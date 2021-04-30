@@ -1,18 +1,36 @@
-
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
-import EditIcon from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
-import { useEffect, useState } from 'react';
-import { bindActionCreators } from 'redux';
+import swal from "sweetalert";  
 import {checkTOList, DeleteToList} from '../servies/actions/action'
  import { connect } from 'react-redux';
 
 
 function List(props) {
+    const DtlClcik=()=>{
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this item!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          props.dispatch(DeleteToList(props.id))
+          swal("Deleted successfully!", {
+            icon: "success",
+          });
+        }
+        //  else {
+        //   swal("Your ");
+        // }
+      });
+  
+     
+    }
     
   return (
    <>
@@ -34,9 +52,7 @@ function List(props) {
           </Button>
      </div>
      <div className="col-auto ">
-     <Button  onClick={() =>{console.log(props.id)
-       props.dispatch(DeleteToList(props.id))}
-      }>
+     <Button  onClick={DtlClcik}>
         <DeleteIcon className="text-danger"/>
           </Button>
      </div>
