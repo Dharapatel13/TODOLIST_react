@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import TODO from './add';
+import TODO from './containers/todoContainer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
