@@ -9,33 +9,55 @@ import {ResetTOList} from '../servies/actions/action'
 
 function TODO(props) {
     const [todoValue,SetTodoValue]=useState('');
-    
+    const [error,setError]=useState('');
 console.log(props.todos);
     const TodoItem=(e)=>
     {
         SetTodoValue(e.target.value)
     }
     
-   
+   const Valid=()=>{
+     if(todoValue===("")){
+       setError("enter some todo item in list");
+
+     }
+
+   }
 
   const keyPress=(e)=>{
+
       if(e.key==="Enter")
       {
+        setError("");
         if(todoValue === (""))
         {
+          Valid();
             alert("enter the value!!");
         }
-        else{
-           
-          
-            props.AddToListHandler(todoValue)
-            SetTodoValue("");
+       else {
+        props.AddToListHandler(todoValue);
+        SetTodoValue('');
             
         }
        
      
       }
   }
+
+  const AddClick=(e)=>{
+      setError("");
+      if(todoValue === (""))
+      {
+        Valid();
+          alert("enter the value!!");
+      }
+     else {
+          props.AddToListHandler(todoValue)
+          SetTodoValue("");
+          
+      }
+}
+
   const allClrClcik=()=>{
     swal({
       title: "Are you sure?",
@@ -72,6 +94,7 @@ console.log(props.todos);
            
             >
         </input>
+        <span className="text-danger "><b>{error}</b></span>
        </div>
 
        <div className="col-sm-auto">
@@ -81,10 +104,7 @@ console.log(props.todos);
                             variant="contained"
                             color="primary"
                             className="h-100"
-                            onClick={(e)=>{ e.preventDefault();
-                                            props.AddToListHandler(todoValue);
-                                            SetTodoValue('');
-                                         }}  >
+                            onClick={AddClick}  >
                             ADD
                         </Button>
                     </div>
