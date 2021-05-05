@@ -1,6 +1,6 @@
 import { ADD_TO_LIST, Reset_Todo } from "../constants/constant";
 import { DELETE_TO_LIST } from "../constants/constant";
-import { CHECK_TO_LIST } from "../constants/constant";
+import { CHECK_TO_LIST,Edit_TO_LIST } from "../constants/constant";
 // import localForage from 'localforage';
 
 
@@ -14,6 +14,7 @@ export default function TodoItem(state=initialState,action){
             return{data:[...state.data,{
                     data: action.data,
                     id: action.id,
+                    // inpt:false,
                     completed:false
                   }
                 ]
@@ -34,6 +35,15 @@ export default function TodoItem(state=initialState,action){
                 data: [...state.data]
               }
 
+
+              case Edit_TO_LIST:
+                let  i = state.data.findIndex((todo) => todo.id === action.id);
+              state.data[i].data = action.data;
+              return {
+                data: [...state.data]
+              }
+
+    
             
       case Reset_Todo:
         

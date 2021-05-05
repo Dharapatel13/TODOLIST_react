@@ -1,6 +1,6 @@
 
 import {ADD_TO_LIST} from "../constants/constant"
-import {DELETE_TO_LIST,Reset_Todo,CHECK_TO_LIST} from '../constants/constant'
+import {DELETE_TO_LIST,Reset_Todo,CHECK_TO_LIST,Edit_TO_LIST} from '../constants/constant'
 let i=0;
 export const AddToList=(data)=>{
     console.log(data);
@@ -32,7 +32,6 @@ return{
 export const checkTOList=(id)=>{
 
     return{
-        
         type:CHECK_TO_LIST,
         
         id
@@ -41,3 +40,11 @@ export const checkTOList=(id)=>{
        
     }
     }
+    export const EditTOList=(data)=>{
+console.log(data)
+        return{
+            
+            type:Edit_TO_LIST,
+            data
+        }
+        }

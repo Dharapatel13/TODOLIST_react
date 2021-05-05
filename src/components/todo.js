@@ -10,6 +10,7 @@ import {ResetTOList} from '../servies/actions/action'
 function TODO(props) {
     const [todoValue,SetTodoValue]=useState('');
     const [error,setError]=useState('');
+
 console.log(props.todos);
     const TodoItem=(e)=>
     {
@@ -32,8 +33,9 @@ console.log(props.todos);
         if(todoValue === (""))
         {
           Valid();
-            alert("enter the value!!");
+        
         }
+     
        else {
         props.AddToListHandler(todoValue);
         SetTodoValue('');
@@ -49,7 +51,7 @@ console.log(props.todos);
       if(todoValue === (""))
       {
         Valid();
-          alert("enter the value!!");
+      
       }
      else {
           props.AddToListHandler(todoValue)
@@ -123,9 +125,12 @@ console.log(props.todos);
 
        
    </div>
+   
    <div className="row  p-3">
             <div className="col p-0">
-            <div className=" ">
+            {props.todos.length != 0  ? ( 
+              <>
+         
             <ul className="list-inline  ">
                   {props.todos.map((todo,index)=>(
                   <ListItem 
@@ -133,13 +138,24 @@ console.log(props.todos);
                   key={index} 
                   id={todo.id} 
                   cmpt={todo.completed}
+               
                   />
                   ))} 
             </ul>
-            </div>
+            </>
+           ):(
+             <div className="row justify-content-center">
+               <div className="col  text-center">
+               <h2 className="text-dark"><b>ADD Somthing in TodoList</b></h2>
+           <img src="https://images.squarespace-cdn.com/content/v1/5bff12f036099b60838b10f7/1561757621406-SVJ2YX8DXFBLXEO1RBBS/ke17ZwdGBToddI8pDm48kMtiXMEMZ8ID8MVhA-T_Qc9Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PITnpAyX_dGZoSaTWLsWN0zAj5xdGjLNRKp-vUPPLOxh8/book_scene1.gif?format=500w" className="img-fluid"/>
+           
+  </div>
+   </div>
+           )}
             </div>
             
     </div>
+ 
 </div>
    
    </>
