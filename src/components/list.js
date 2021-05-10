@@ -5,6 +5,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Edit from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
 import swal from "sweetalert";  
+import Swal from "sweetalert2"; 
 import {checkTOList, DeleteToList,EditTOList} from '../servies/actions/action'
  import { connect } from 'react-redux';
 import { useState } from 'react';
@@ -36,15 +37,36 @@ function List(props) {
   
      
     }
-    const editinpt=()=>{
-      if(edit===true)
-      {
-        setedit(false);
-      }
-      else{
-        setedit(true)}
+    const editinpt = async () => {
+      const { value: text } = await Swal.fire({
+        title: 'Update Your TodoItem ',
+        input: 'text',
+       inputValue:props.text,
+      
+       
+      
+      })
+    
+      if (text) {
 
-    }
+        Swal.fire({
+          title: "yeah!!!",
+          text: "successfully Update Todo",
+          icon: "success",
+          
+      //     backdrop: `
+      //     #607d8b6b
+      //    url("http://pa1.narvii.com/7206/7ae3453ffbdcc53495a7d046d625f949241e6bedr1-370-300_00.gif")
+      //    left top
+      //    no-repeat
+      //  `
+        })
+        props.dispatch(EditTOList(text,props.id))
+      }
+    
+  }
+        // props.dispatch(EditTOList(text,props.id))
+   
   return (
    <>
 
@@ -52,33 +74,8 @@ function List(props) {
  fontSize: '1.5em',
  boxShadow: '10px 10px grey'}}>
  
- <div style={{display:edit?"block":"none"}}>
- <div className="row justify-content-center p-0 "> 
-     <div className="col col-md pl-xs-3 ">
-       <input value={todo}
-        onChange={(e) => {
-        setTodo(e.target.value);
-                            }}/>
-      
-       </div>
-       <div className="col col-md pl-xs-3  text-right">
-       <Button   onClick={() => {
-                  props.dispatch(EditTOList())
-                        if(edit) {
-                         setTodo(props.todo);   
-                        }
-                        setedit(!edit);  
-                      
-
-                    }} >
-        <Save className="text-info"/>
-          </Button>
-       </div>
-
-       </div>
- </div> 
- <div className="row justify-content-center p-0 " style={{display:edit?"none":"flex"}}> 
-     <div className="col col-md pl-xs-3 ">
+ <div className="row justify-content-center p-0 " > 
+     <div className="col-12 text-center text-md-left col-md pl-xs-3 ">
       
        <span className="text-break"> {props.text} </span>
     

@@ -5,11 +5,14 @@ import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux'
 import ListItem from "./list";
 import swal from "sweetalert";  
-import {ResetTOList} from '../servies/actions/action'
+import {ResetTOList, setFilter} from '../servies/actions/action'
+import Dropdown from "react-bootstrap/Dropdown";
+
 
 function TODO(props) {
     const [todoValue,SetTodoValue]=useState('');
     const [error,setError]=useState('');
+    const [text,settext]=useState('All');
 
 console.log(props.todos);
     const TodoItem=(e)=>
@@ -59,6 +62,24 @@ console.log(props.todos);
           
       }
 }
+const select=(e)=>{
+  settext(e);
+  props.dispatch(setFilter(e))
+  if(e=='All')
+  {
+    return props.todo
+  }
+  else if(e=='Completed')
+  {
+    return  alert("hello")//(props.todos.filter(t => t.cmpt)); 
+  }
+  else
+  {
+
+  }
+alert(e);
+}
+
 
   const allClrClcik=()=>{
     swal({
@@ -119,6 +140,19 @@ console.log(props.todos);
                         >
                             Reset
                         </Button>
+                     </div>
+                     <div className="col-auto">
+                     <Dropdown onSelect={select}>
+          <Dropdown.Toggle  variant="info"  id="dropdown-basic">
+            {text}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item eventKey="All">All</Dropdown.Item>
+            <Dropdown.Item eventKey="Completed">Completed</Dropdown.Item>
+            <Dropdown.Item eventKey="Uncompleted">Uncompleted</Dropdown.Item>
+     
+          </Dropdown.Menu>
+        </Dropdown>
                      </div>
                 </div>
        </div>

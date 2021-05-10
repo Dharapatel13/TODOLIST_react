@@ -1,4 +1,5 @@
-import { ADD_TO_LIST, Reset_Todo } from "../constants/constant";
+import { setFilter } from "../actions/action";
+import { ADD_TO_LIST, Reset_Todo, SET_FILTER } from "../constants/constant";
 import { DELETE_TO_LIST } from "../constants/constant";
 import { CHECK_TO_LIST,Edit_TO_LIST } from "../constants/constant";
 // import localForage from 'localforage';
@@ -35,19 +36,23 @@ export default function TodoItem(state=initialState,action){
                 data: [...state.data]
               }
 
-
               case Edit_TO_LIST:
                 let  i = state.data.findIndex((todo) => todo.id === action.id);
               state.data[i].data = action.data;
               return {
                 data: [...state.data]
               }
+              case setFilter:
+                console.log(action.filter)
+              return 
+             
 
-    
             
       case Reset_Todo:
         
             return initialState
+
+    
       
               
                
