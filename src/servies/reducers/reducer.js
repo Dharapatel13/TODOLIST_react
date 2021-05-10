@@ -42,9 +42,7 @@ export default function TodoItem(state=initialState,action){
               return {
                 data: [...state.data]
               }
-              case setFilter:
-                console.log(action.filter)
-              return 
+            
              
 
             

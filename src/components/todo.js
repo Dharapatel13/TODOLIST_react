@@ -6,14 +6,22 @@ import {connect} from 'react-redux'
 import ListItem from "./list";
 import swal from "sweetalert";  
 import {ResetTOList, setFilter} from '../servies/actions/action'
-import Dropdown from "react-bootstrap/Dropdown";
+import Dropdown from './filter'
 
 
 function TODO(props) {
     const [todoValue,SetTodoValue]=useState('');
     const [error,setError]=useState('');
-    const [text,settext]=useState('All');
+   
 
+    let filteredList = [];
+  if (props.filter === 'all') {
+    filteredList = props.todos;
+  } else if (props.filter === 'uncompleted') {
+    filteredList = props.todos.filter(todo => !todo.cmpt);
+  } else if (props.filter === 'completed') {
+    filteredList = props.todos.filter(todo => todo.cmpt);
+  }
 console.log(props.todos);
     const TodoItem=(e)=>
     {
@@ -62,23 +70,7 @@ console.log(props.todos);
           
       }
 }
-const select=(e)=>{
-  settext(e);
-  props.dispatch(setFilter(e))
-  if(e=='All')
-  {
-    return props.todo
-  }
-  else if(e=='Completed')
-  {
-    return  alert("hello")//(props.todos.filter(t => t.cmpt)); 
-  }
-  else
-  {
 
-  }
-alert(e);
-}
 
 
   const allClrClcik=()=>{
@@ -142,17 +134,7 @@ alert(e);
                         </Button>
                      </div>
                      <div className="col-auto">
-                     <Dropdown onSelect={select}>
-          <Dropdown.Toggle  variant="info"  id="dropdown-basic">
-            {text}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item eventKey="All">All</Dropdown.Item>
-            <Dropdown.Item eventKey="Completed">Completed</Dropdown.Item>
-            <Dropdown.Item eventKey="Uncompleted">Uncompleted</Dropdown.Item>
-     
-          </Dropdown.Menu>
-        </Dropdown>
+                        <Dropdown/>
                      </div>
                 </div>
        </div>
@@ -196,7 +178,8 @@ alert(e);
   );
 }
 const mapStateToProps=state=>({
-    todos:state.todos.data
+    todos:state.todos.data,
+    filter: state.todos.filter,
 })
 
 export default connect(mapStateToProps)(TODO);
