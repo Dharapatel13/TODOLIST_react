@@ -6,9 +6,11 @@ import { CHECK_TO_LIST,Edit_TO_LIST } from "../constants/constant";
 
 
 const initialState={
-    data:[]
+    data:[],
+   
 }
 export default function TodoItem(state=initialState,action){
+  let { data, filter } = state;
     switch (action.type) {
         case ADD_TO_LIST:
             console.log(state)
@@ -53,21 +55,22 @@ export default function TodoItem(state=initialState,action){
             case SET_FILTER:
               let filterTodo = action.filter
               // let  index = state.data.findIndex((todo) => todo.id === action.id);
-              let filterItem=[];
+              // let array=[]
+             let array=state.data;
+              let filterItem;
            if(filterTodo === 'Completed')
            {
-             filterItem = state.data.filter(todo => todo.completed);
+             filterItem = array.filter(todo => todo.completed);
            }
            else if(filterTodo === 'Uncompleted')
            {
-             filterItem =state.data.filter(todo => !todo.completed);
+             filterItem =array.filter(todo => !todo.completed);
            }
            else
            {
              filterItem =state.data
            }
-          return {...state,
-             filterItem}
+          return {...state,data:filterItem }
         
               
                
