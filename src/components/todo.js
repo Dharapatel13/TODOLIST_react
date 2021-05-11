@@ -7,21 +7,30 @@ import ListItem from "./list";
 import swal from "sweetalert";  
 import {ResetTOList, setFilter} from '../servies/actions/action'
 import Dropdown from './filter'
+import filter from './filter';
 
 
 function TODO(props) {
     const [todoValue,SetTodoValue]=useState('');
     const [error,setError]=useState('');
    
+    const [text,settext]=useState('All');
+    // let [filteredList,setFiltereList] = useState(props.todos);
 
-    let filteredList = [];
-  if (props.filter === 'all') {
-    filteredList = props.todos;
-  } else if (props.filter === 'uncompleted') {
-    filteredList = props.todos.filter(todo => !todo.cmpt);
-  } else if (props.filter === 'completed') {
-    filteredList = props.todos.filter(todo => todo.cmpt);
-  }
+    const select=(e)=>{
+        settext(e);
+        props.dispatch(setFilter(e));
+       
+        // if (e=== 'All') {
+        
+        //   return props.todos;
+        // } else if (e === 'Uncompleted') {
+        //     const todos=props.todos.filter(todo => !todo.completed);
+        //         return todos
+                
+        //     }
+  
+      }
 console.log(props.todos);
     const TodoItem=(e)=>
     {
@@ -73,7 +82,7 @@ console.log(props.todos);
 
 
 
-  const allClrClcik=()=>{
+  const allClrClcik=(e)=>{
     swal({
       title: "Are you sure?",
       text: "Once Reset, you will not be able to recover this item!",
@@ -92,6 +101,7 @@ console.log(props.todos);
       //   swal("Your ");
       // }
     });
+    e.preventDefault()
   }
    
   return (
@@ -134,7 +144,7 @@ console.log(props.todos);
                         </Button>
                      </div>
                      <div className="col-auto">
-                        <Dropdown/>
+                        <Dropdown select={select} filter={text}/>
                      </div>
                 </div>
        </div>
@@ -178,8 +188,8 @@ console.log(props.todos);
   );
 }
 const mapStateToProps=state=>({
-    todos:state.todos.data,
-    filter: state.todos.filter,
+    todos:state.Data.data,
+    // filter: state.todos.filter,
 })
 
 export default connect(mapStateToProps)(TODO);

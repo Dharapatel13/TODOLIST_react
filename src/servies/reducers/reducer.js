@@ -50,8 +50,25 @@ export default function TodoItem(state=initialState,action){
         
             return initialState
 
-    
-      
+            case SET_FILTER:
+              let filterTodo = action.filter
+              // let  index = state.data.findIndex((todo) => todo.id === action.id);
+              let filterItem=[];
+           if(filterTodo === 'Completed')
+           {
+             filterItem = state.data.filter(todo => todo.completed);
+           }
+           else if(filterTodo === 'Uncompleted')
+           {
+             filterItem =state.data.filter(todo => !todo.completed);
+           }
+           else
+           {
+             filterItem =state.data
+           }
+          return {...state,
+             filterItem}
+        
               
                
     

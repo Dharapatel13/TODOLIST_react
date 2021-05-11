@@ -51,7 +51,7 @@ console.log(data)
         }
         }
         export const setFilter = (filter) => ({
-            type: 'SET_FILTER',
+            type: SET_FILTER,
             filter
         });
         

@@ -5,7 +5,7 @@ import TodoItem from '../servies/reducers/reducer';
 
 
 const mapStateToProps=state=>({
-    todos:state.todos.data
+    todos:state.Data.data
 })
 const mapDispatchToProps=dispatch=>({
     AddToListHandler:data=> dispatch(AddToList(data)),

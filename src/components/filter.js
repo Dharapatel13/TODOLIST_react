@@ -3,30 +3,12 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { setFilter} from '../servies/actions/action'
 import {connect} from 'react-redux'
 const Filter =(props)=>{
-    const [text,settext]=useState('All');
-
-    const select=(e)=>{
-        settext(e);
-        props.dispatch(setFilter(e))
-        if(e=='All')
-        {
-          return props.todo
-        }
-        else if(e=='Completed')
-        {
-          return  (props.todos.filter(t => t.cmpt)); 
-        }
-        else
-        {
-      
-        }
-      alert(e);
-      }
+    
     return(
         <>
-        <Dropdown onSelect={select}>
+        <Dropdown onSelect={props.select}>
         <Dropdown.Toggle  variant="info"  id="dropdown-basic">
-          {text}
+          {props.filter}
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item eventKey="All">All</Dropdown.Item>
@@ -41,7 +23,7 @@ const Filter =(props)=>{
     
 }
 const mapStateToProps=state=>({
-    todos:state.todos.data
+    todos:state.Data.data
 })
 
 export default connect(mapStateToProps)(Filter);
