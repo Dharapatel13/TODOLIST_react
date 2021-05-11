@@ -7,7 +7,7 @@ import { CHECK_TO_LIST,Edit_TO_LIST } from "../constants/constant";
 
 const initialState={
     data:[],
-   
+   VisiviltyFilter:'All'
 }
 export default function TodoItem(state=initialState,action){
   let { data, filter } = state;
