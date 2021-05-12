@@ -23,7 +23,7 @@ const Filter =(props)=>{
     
 }
 const mapStateToProps=state=>({
-    todos:state.Data.data
+    todos:state.ListData.data
 })
 
 export default connect(mapStateToProps)(Filter);

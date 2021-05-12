@@ -188,8 +188,8 @@ console.log(props.todos);
   );
 }
 const mapStateToProps=state=>({
-    todos:state.Data.data,
-    // filter: state.todos.filter,
+    todos:state.ListData.data2,
+   
 })
 
 export default connect(mapStateToProps)(TODO);

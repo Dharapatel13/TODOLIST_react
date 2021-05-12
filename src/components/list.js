@@ -109,7 +109,7 @@ function List(props) {
 }
 
 const mapStateToProps=state=>({
-  todolist:state.Data.data
+  todolist:state.ListData.data
 })
 
 
