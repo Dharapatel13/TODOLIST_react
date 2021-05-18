@@ -8,28 +8,15 @@ import { CHECK_TO_LIST,Edit_TO_LIST } from "../constants/constant";
 const initialState={
     data:[],
     data2:[],
-  //  VisiviltyFilter:'All'
+    Filter:'All'
 }
 export default function TodoItem(state=initialState,action){
   let { data, filter } = state;
     switch (action.type) {
         case ADD_TO_LIST:
             console.log(state)
-            return{data:[...state.data,{
-                    data: action.data,
-                    id: action.id,
-                    // inpt:false,
-                    completed:false
-                  }
-                ],data2:[...state.data,{
-                  data: action.data,
-                  id: action.id,
-                  // inpt:false,
-                  completed:false
-                }
-              ]
- 
-            }
+            
+            return state
     
         case DELETE_TO_LIST:
               const todos = state.data.filter((todo) => todo.id !== action.id)

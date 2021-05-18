@@ -2,16 +2,30 @@
 import {ADD_TO_LIST} from "../constants/constant"
 import {DELETE_TO_LIST,Reset_Todo,CHECK_TO_LIST,Edit_TO_LIST,SET_FILTER} from '../constants/constant'
 let i=0;
+
 export const AddToList=(data)=>{
     console.log(data);
-return{
-    
-    type:ADD_TO_LIST,
-    data:data,
-    id:i++,
-    completed: false
+return (dispatch, getState, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+    firestore.collection("todolist").add({data:data,id:i++, completed: false})
+    .then(() => {
+        dispatch({
+                type:ADD_TO_LIST,
+                data:data,
+            
+            
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "ADD_TASK_ERR",
+          err,
+        });
+      });
+  };
 }
-}
+
+
 export const DeleteToList=(id)=>{
     console.log(id)
 return{

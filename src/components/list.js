@@ -53,19 +53,12 @@ function List(props) {
           title: "yeah!!!",
           text: "successfully Update Todo",
           icon: "success",
-          
-      //     backdrop: `
-      //     #607d8b6b
-      //    url("http://pa1.narvii.com/7206/7ae3453ffbdcc53495a7d046d625f949241e6bedr1-370-300_00.gif")
-      //    left top
-      //    no-repeat
-      //  `
         })
         props.dispatch(EditTOList(text,props.id))
       }
     
   }
-        // props.dispatch(EditTOList(text,props.id))
+     
    
   return (
    <>
@@ -86,13 +79,13 @@ function List(props) {
         <CheckIcon className="text-success"/>
           </Button>
      </div>
-     <div className="col-auto ">
+     <div className="col-auto p-0">
      <Button  onClick={editinpt }   >
         <Edit className="text-primary"/>
           </Button>
           
      </div>
-     <div className="col-auto ">
+     <div className="col-auto p-0 ">
      <Button  onClick={DtlClcik}>
         <DeleteIcon className="text-danger"/>
           </Button>

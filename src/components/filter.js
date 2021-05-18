@@ -7,7 +7,7 @@ const Filter =(props)=>{
     return(
         <>
         <Dropdown onSelect={props.select}>
-        <Dropdown.Toggle  variant="info"  id="dropdown-basic">
+        <Dropdown.Toggle  variant="info"  id="dropdown-basic" className="btn btn-block">
           {props.filter}
         </Dropdown.Toggle>
         <Dropdown.Menu>
